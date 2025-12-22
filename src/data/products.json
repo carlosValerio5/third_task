@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "imgSrc": "gift-for-work.png",
+        "altText": "gift-for-work",
+        "category": "For Work",
+        "title": "Console.log guru",
+        "cardId": "first-card",
+        "price": 29.99
+    },
+    {
+        "id": 2,
+        "imgSrc": "gift-for-health.png",
+        "altText": "gift-for-health",
+        "category": "For Health",
+        "title": "Hydration Bot",
+        "cardId": "second-card",
+        "price": 19.99
+    },
+    {
+        "id": 3,
+        "imgSrc": "gift-for-work.png",
+        "altText": "gift-for-work",
+        "category": "For Work",
+        "title": "Merge Master",
+        "cardId": "third-card",
+        "price": 39.99
+    },
+    {
+        "id": 4,
+        "imgSrc": "gift-for-harmony.png",
+        "altText": "gift-for-harmony",
+        "category": "For Harmony",
+        "title": "Spontaneous Coding Philosopher",
+        "cardId": "fourth-card",
+        "price": 24.99
+    }
+]
