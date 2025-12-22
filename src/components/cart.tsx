@@ -39,6 +39,7 @@ export default function Cart({ items = [], onChange, setItems, currentGifts }: P
                     return gift
                 }
             }))
+        
 
         setItemsHash((prev) => {
             if (!prev[id]) return prev

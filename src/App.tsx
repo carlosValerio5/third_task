@@ -25,7 +25,7 @@ function App() {
           <>
             <div className="cart-backdrop" onClick={() => setIsCartOpen(false)} />
             <aside className="cart-overlay">
-              <Cart items={gifts} setItems={setCurrentGifts} currentGifts={currentGifts}/>
+              <Cart items={gifts} setItems={setCurrentGifts} currentGifts={currentGifts} onChange={setGifts}/>
             </aside>
           </>
         )}
