@@ -1,5 +1,5 @@
 import { useEffect, useEffectEvent, useState } from 'react'
-import type { ProductsQuantity } from './gifts'
+import { useCartContext } from '../context/GiftsContext'
 
 export interface CartItem {
     id: string
@@ -8,14 +8,8 @@ export interface CartItem {
     quantity: number
 }
 
-type Props = {
-    items?: CartItem[]
-    onChange?: (items: CartItem[]) => void
-    setItems: (items: ProductsQuantity[]) => void
-    currentGifts?: ProductsQuantity[]
-}
-
-export default function Cart({ items = [], onChange, setItems, currentGifts }: Props) {
+export default function Cart() {
+    const { gifts, setGifts, products, setProducts } = useCartContext();
     const [itemsHash, setItemsHash] = useState<Record<string, CartItem>>({})
     const onHashChange = useEffectEvent((newHash: Record<string, CartItem>) => {
         setItemsHash(newHash);
@@ -23,15 +17,15 @@ export default function Cart({ items = [], onChange, setItems, currentGifts }: P
 
     useEffect(() => {
         const map: Record<string, CartItem> = {}
-        items.forEach((it) => (map[it.id] = { ...it }))
+        gifts.forEach((it) => (map[it.id] = { ...it }))
         onHashChange(map)
-    }, [items])
+    }, [gifts])
 
     const itemsList = Object.values(itemsHash)
 
     function removeItem(id: string) {
-        if (currentGifts)
-            setItems(currentGifts.map(gift => {
+        if (products)
+            setProducts(products.map(gift => {
                 if (gift.cardId === id) {
                     return { ...gift, quantity: 0 }
                 }
@@ -46,15 +40,15 @@ export default function Cart({ items = [], onChange, setItems, currentGifts }: P
             const next = { ...prev }
             delete next[id]
             const arr = Object.values(next)
-            onChange?.(arr)
+            setGifts?.(arr)
             return next
         })
     }
 
     function clear() {
-        setItems(currentGifts ? currentGifts.map(gift => ({ ...gift, quantity: 0 })) : [])
+        setProducts(products ? products.map(gift => ({ ...gift, quantity: 0 })) : [])
         setItemsHash({})
-        onChange?.([])
+        setGifts?.([])
     }
 
     const total = itemsList.reduce((s, it) => s + it.price * it.quantity, 0)
@@ -71,7 +65,7 @@ export default function Cart({ items = [], onChange, setItems, currentGifts }: P
     return (
         <div className="cart">
             <h2 className="header-2">Your Cart</h2>
-            <ul className="cart-items">
+            <ul className="cart-gifts">
                 {itemsList.map((item) => (
                     <li key={item.id} className="cart-item">
                         <div className="cart-item-left">
