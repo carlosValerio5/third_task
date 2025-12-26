@@ -1,12 +1,6 @@
 import { useEffect, useEffectEvent, useState } from 'react'
 import { useCartContext } from '../context/GiftsContext'
-
-export interface CartItem {
-    id: string
-    name: string
-    price: number
-    quantity: number
-}
+import type { CartItem } from '../types/Cart'
 
 export default function Cart() {
     const { gifts, setGifts, products, setProducts } = useCartContext();

@@ -3,9 +3,6 @@ import Products from "../data/products.json"
 import { useCartContext } from "../context/GiftsContext";
 import { CartItemView } from "../types/Cart";
 
-
-export type ProductsQuantity = (typeof Products)[number] & { quantity: number };
-
 export default function Gifts() {
     const { setGifts, products } = useCartContext();
 
